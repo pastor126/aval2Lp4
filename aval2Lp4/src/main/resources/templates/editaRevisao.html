@@ -33,13 +33,13 @@
 					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 					<span th:text="${mensagem}"></span>
 				</div>
-				<form th:action="@{/revisao/salvarRevisao}" th:object="${revisao}" method="post">
+				<form th:action="@{/revisao/editarRevisao/{id}(id=${revisao.id})}" th:object="${revisao}" method="post">
 
 					<div class="row mb-3">
 						<label class="col-sm-1 col-form-label">Revisão de(Km):</label>
 						<div class="col-sm-5">
 							<input class="form-control" type="text" th:field="*{km}">
-							<input class="form-control" type="hidden" th:field="*{moto}">
+							<input type="hidden" th:field="*{moto.id}">
 						</div>	
 						<div class="col-sm-5">
 							<span class="mensagem" th:if="${#fields.hasErrors('km')}"

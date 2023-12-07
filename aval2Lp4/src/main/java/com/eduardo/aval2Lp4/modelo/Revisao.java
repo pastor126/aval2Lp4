@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -21,7 +22,7 @@ public class Revisao {
 	@NotBlank(message = "Se não tem observações informe 'OK'.")
 	private String obs;
 	
-	@ManyToOne
+	@OneToOne
 	private Moto moto;
 
 	public Long getId() {

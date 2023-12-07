@@ -67,12 +67,8 @@ public class RevisaoController {
 	
 	@GetMapping("/editarRevisao/{id}")
 	public String editarRevisao(@PathVariable("id") long id, RedirectAttributes attributes, Model model) {
-		
 			model.addAttribute("revisao", revisaoServico.buscarRevisaoPorId(id)) ;
-			List<Moto> motos = motoServico.buscarTodasMotos();
-			model.addAttribute("motos", motos);
-			return "/editaRevisao";
-
+			return "editaRevisao";
 	}
 	
 	@PostMapping("/editarRevisao/{id}")
@@ -81,11 +77,12 @@ public class RevisaoController {
 			RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			revisao.setId(id);
-			return "/editaRevisao";
+			return "editaRevisao";
 		}
+		revisao.setId(id);
 		revisaoServico.salvar(revisao);
 		attributes.addFlashAttribute("mensagem", "Revisão atualizado com sucesso.");
-		return "redirect:/editarRevisão/" + id;
+		return "redirect:/revisao/listaRevisao/" + revisao.getMoto().getId();
 	}
 	
 	@GetMapping("/deletar/{id}")
